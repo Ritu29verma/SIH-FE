@@ -34,13 +34,13 @@ export default function App() {
         <Route path="/govOfficial-signin" element={<GovSingin />} />
         <Route path="/retailer-signin" element={<RetailerSignIn />} />
         <Route path="/retailer-signup" element={<RetailerSignUp />} />
-        <Route path="/retailer-dashboard" element={<RetailerDashboard />} />
         <Route path="/govOfficial-dashboard" element={<GovDashboard />} />
-        <Route path="/shop-create" element={<ShopCreate />} />
-        <Route path="/shop-login" element={<ShopLogin />} />
         <Route path="/order-section" element={<Orders/>}/>
         <Route path="/" element={<Home />} />
         <Route element={<PrivateRoute />}>
+        <Route path="/retailer-dashboard" element={<RetailerDashboard />} />
+        <Route path="/shop-create" element={<ShopCreate />} />
+        <Route path="/shop-login" element={<ShopLogin />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-product" element={<CreateProduct />} />
         </Route>

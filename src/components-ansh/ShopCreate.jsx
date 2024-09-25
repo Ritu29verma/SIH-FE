@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const ShopCreate = () => {
   const [name, setName] = useState("");
@@ -31,7 +32,7 @@ const ShopCreate = () => {
   ];
 
   const navigate = useNavigate();
-  const { currentUser } = useSelector(state => state.user); 
+  const { currentUser } = useSelector(state => state.user);
   const userId = currentUser._id; 
   // Handle service change
   const handleServiceChange = (e) => {
@@ -57,6 +58,7 @@ const ShopCreate = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${userId}`,
         },
         body: JSON.stringify(formData),
       });

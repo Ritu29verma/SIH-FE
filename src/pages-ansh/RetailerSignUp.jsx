@@ -29,7 +29,7 @@ export default function RetailerSignUp() {
         setError(true);
         return;
       }
-      navigate('/shop-create');
+      navigate('/retailer-signin');
     } catch (error) {
       setLoading(false);
       setError(true);

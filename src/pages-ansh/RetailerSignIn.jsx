@@ -35,7 +35,7 @@ export default function RetailerSignIn() {
         return;
       }
       dispatch(signInSuccess(data));
-      navigate('/retailer-dashboard');
+      navigate('/shop-create');
     } catch (error) {
       dispatch(signInFailure(error));
     }
