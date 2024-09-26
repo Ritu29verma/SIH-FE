@@ -66,7 +66,7 @@ const ShopCreate = () => {
       const data = await res.json();
       if (data.success) {
         toast.success("Shop registered successfully!");
-        navigate("/retailer-dashboard"); // Redirect to login page after successful registration
+        navigate("/retailer-dashboard"); 
       } else {
         toast.error(data.message);
       }
