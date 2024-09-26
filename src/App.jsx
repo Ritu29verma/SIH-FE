@@ -17,14 +17,25 @@ import Output2 from "./pages-deep/Output2.jsx";
 import Orders from "./pages-ansh/Orders.jsx";
 import { useState } from "react";
 import Output3 from "./pages-deep/Output3.jsx";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
   const [count, setCount] = useState(0);
   return (
     <BrowserRouter>
-      {/* header */}
-      {/* <Header /> */}
+      <ToastContainer
+       position="bottom-left"  
+       autoClose={5000}      
+       hideProgressBar={false} 
+       newestOnTop={false}     
+       closeOnClick
+       rtl={false}       
+       pauseOnFocusLoss
+       draggable
+       pauseOnHover />
       <Routes>
+      
         <Route path="/search-by-make-model" element={<Output />} />
         <Route path="/search-by-specification" element={<Output2 />} />
         <Route path="/search-service-provider" element={<Output3 />} />
@@ -37,10 +48,11 @@ export default function App() {
         <Route path="/govOfficial-dashboard" element={<GovDashboard />} />
         <Route path="/order-section" element={<Orders/>}/>
         <Route path="/" element={<Home />} />
-        <Route element={<PrivateRoute />}>
-        <Route path="/retailer-dashboard" element={<RetailerDashboard />} />
-        <Route path="/shop-create" element={<ShopCreate />} />
         <Route path="/shop-login" element={<ShopLogin />} />
+       
+        <Route element={<PrivateRoute />}>
+        <Route path="/create-shop" element={<ShopCreate />} />
+        <Route path="/retailer-dashboard" element={<RetailerDashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-product" element={<CreateProduct />} />
         </Route>

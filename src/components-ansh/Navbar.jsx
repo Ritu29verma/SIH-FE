@@ -26,12 +26,12 @@ const Navbar = ({ userType }) => {
           </>
         ) : (
           <>
-            <button className="bg-white text-dark px-4 py-2 rounded mx-2 shadow-lg hover:from-middle hover:to-white">
+            {/* <button className="bg-white text-dark px-4 py-2 rounded mx-2 shadow-lg hover:from-middle hover:to-white">
               Login
             </button>
             <button className="bg-white text-dark px-4 py-2 rounded shadow-lg hover:from-middle hover:to-white">
               Register
-            </button>
+            </button> */}
           </>
         )}
       </div>

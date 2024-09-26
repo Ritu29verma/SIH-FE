@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import OAuth from '../components-ansh/OAuth';
-
+import { toast } from "react-toastify";
 export default function GovSignup() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(false);
@@ -15,7 +15,7 @@ export default function GovSignup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
+      setLoading(false);
       setError(false);
       const res = await fetch('http://localhost:3000/api/auth/signup', {
         method: 'POST',
@@ -25,17 +25,17 @@ export default function GovSignup() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data);
-      setLoading(false);
-      if (data.success === false) {
-        setError(true);
-        return;
-      }
-      navigate('/govOfficial-dashboard');
-    } catch (error) {
-      setLoading(false);
-      setError(true);
+    if (res.ok && data.success) {
+      toast.success(data.message);
+      navigate("/govOfficial-dashboard"); 
+    } else {
+      toast.error("Registration failed. Please try again.");
     }
+  } catch (error) {
+    toast.error("Registration failed. Please try again.");
+    console.error("There was an error registering!", error);
+  }
+ 
   };
 
   return (
@@ -45,27 +45,42 @@ export default function GovSignup() {
           Government Official Sign Up
         </h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+       <div>
+       <label htmlFor="username" className="block text-sm font-medium text-gray-700 ">
+                Enter Your Username
+              </label>
           <input
             type="text"
             placeholder="Username"
             id="username"
-            className="bg-white text-dark p-3 rounded-lg border border-middle focus:outline-none focus:ring-2 focus:ring-middle"
+            className="bg-white text-dark p-3 min-w-full rounded-lg border border-middle focus:outline-none focus:ring-2 focus:ring-middle"
             onChange={handleChange}
           />
+       </div>
+         <div>
+         <label htmlFor="email" className="block text-sm font-medium text-gray-700 ">
+                Enter Your Email
+              </label>
           <input
             type="email"
             placeholder="Email"
             id="email"
-            className="bg-white text-dark p-3 rounded-lg border border-middle focus:outline-none focus:ring-2 focus:ring-middle"
+            className="bg-white text-dark p-3 min-w-full rounded-lg border border-middle focus:outline-none focus:ring-2 focus:ring-middle"
             onChange={handleChange}
           />
+         </div>
+         <div>
+         <label htmlFor="password" className="block text-sm font-medium text-gray-700 ">
+                Enter Your Password
+              </label>
           <input
             type="password"
             placeholder="Password"
             id="password"
-            className="bg-white text-dark p-3 rounded-lg border border-middle focus:outline-none focus:ring-2 focus:ring-middle"
+            className="bg-white text-dark p-3 min-w-full rounded-lg border border-middle focus:outline-none focus:ring-2 focus:ring-middle"
             onChange={handleChange}
           />
+         </div>
           <button
             disabled={loading}
             className="bg-dark text-white p-3 rounded-lg uppercase hover:bg-middle transition duration-300 disabled:bg-opacity-70"
@@ -80,9 +95,7 @@ export default function GovSignup() {
             <span className="text-middle underline">Sign In</span>
           </Link>
         </div>
-        <p className="text-red-600 mt-5 text-center">
-          {error && 'Something went wrong!'}
-        </p>
+       
       </div>
     </div>
   );
