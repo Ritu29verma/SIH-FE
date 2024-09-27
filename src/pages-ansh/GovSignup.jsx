@@ -17,7 +17,7 @@ export default function GovSignup() {
     try {
       setLoading(false);
       setError(false);
-      const res = await fetch('http://localhost:3000/api/auth/signup', {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

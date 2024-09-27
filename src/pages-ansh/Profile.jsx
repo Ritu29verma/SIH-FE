@@ -26,7 +26,7 @@ export default function Profile() {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
-      const res = await fetch(`http://localhost:3000/api/user/update/${currentUser._id}`, {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/user/update/${currentUser._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export default function Profile() {
   const handleDeleteAccount = async () => {
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`http://localhost:3000/api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/user/delete/${currentUser._id}`, {
         method: 'DELETE',
       });
 
@@ -71,7 +71,7 @@ export default function Profile() {
   const handleSignOut = async () => {
     try {
       const token = localStorage.getItem('token'); // Retrieve the token
-      const response = await fetch('http://localhost:3000/api/auth/signout', {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth/signout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

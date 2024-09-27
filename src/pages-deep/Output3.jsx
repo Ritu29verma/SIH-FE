@@ -74,7 +74,7 @@ const Output3 = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/scrapedata/scrape/`,
+        `${import.meta.env.VITE_BASE_URL}/api/scrapedata/scrape/`,
         {
           method: "POST",
           headers: {

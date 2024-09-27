@@ -20,7 +20,7 @@ const ShopLogin = () => {
             email: email,
             password:password
         }
-        const res = await fetch('http://localhost:3000/api/shop/login-shop', {
+        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/shop/login-shop`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

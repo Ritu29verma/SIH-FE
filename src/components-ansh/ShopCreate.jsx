@@ -54,7 +54,7 @@ const ShopCreate = () => {
         userId
       };
 
-      const res = await fetch("http://localhost:3000/api/shop/create-shop", {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/shop/create-shop`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

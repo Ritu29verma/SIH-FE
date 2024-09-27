@@ -26,7 +26,7 @@ const CreateProduct = () => {
 
   const fetchProductDetails = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/product/get-product/${productId}`);
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/product/get-product/${productId}`);
       
       const data = await response.json();
       if (response.ok) {
@@ -66,8 +66,8 @@ const CreateProduct = () => {
 
     try {
       const url = productId
-        ? `http://localhost:3000/api/product/update-product/${productId}`
-        : "http://localhost:3000/api/product/create-product";
+        ? `${import.meta.env.VITE_BASE_URL}/api/product/update-product/${productId}`
+        : `${import.meta.env.VITE_BASE_URL}/api/product/create-product`;
 
       const response = await fetch(url, {
         method: productId ? "PUT" : "POST",
